@@ -1,4 +1,4 @@
-name: Terraform init
+name: Terraform CD
 on: [push]
 jobs:
   terraform_apply:
@@ -24,7 +24,7 @@ jobs:
 
     - name: Terraform validation
       run: terraform validate
-
+      
     - name: Terraform apply
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
