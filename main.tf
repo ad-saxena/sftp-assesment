@@ -125,6 +125,11 @@ resource "aws_transfer_user" "sftp_user" {
     target = "/${aws_s3_bucket.incoming_files.id}/sftpuser"
   }
 }
+resource "aws_transfer_ssh_key" "sftp_ssh_key" {
+  server_id = aws_transfer_server.sftp_server.id
+  user_name = aws_transfer_user.sftp_user.user_name
+  body      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDM6m6Hmd6jI8RXhOuZUm3L5N2xxL+6+eLTG6XcLRzkiX83QJyZP+UplESHJtmBdWuSfDvIOi8L9y+oxYEt9Pk8xiysNyvMtHF8DC20aZk68OPQJApkdE6U3x5/SgvY/RgSg3ON8nr171M4NGA8VqKo8COatUIADD3VctcK32cwkMjZWBYpAcpxmxFTxRS0t+qejTEBIzX1xpVFvDFuIuZNgcoPiRP9mUOU7NBXTVDknCYGXfzvAr7Yhzf/wszUdjFhx9rw2PXqkyiw7RnkEFZJf0WhTtGEfVfJVHhoZPnnFX1SXU8/z4B473oky6pEBd83Ep92PZPJT3Zpn+yIMKWZSFxS4FjnfAzCG+scCmN32o6xjy1XLa+e/ndJDztUVQHhQB8kco6a4jFMzDaxS+jmCEG7Ujfb6agMAJLWYU69isJJI4oh6rwimRTP5a2icc0vbtNUSxPyCUdLZuCdRGrA227ymn0hrjK4J2vtHaviXkNtU6fXBuxtPABLHccWzr8= adsaxena@Ads-MacBook-Air-2.local"
+}
 
 
 resource "aws_iam_role" "lambda_role" {
