@@ -16,7 +16,7 @@ resource "aws_s3_bucket_object" "sftpuser" {
     # bucket = "${aws_s3_bucket.b.id}"
     bucket = aws_s3_bucket.incoming_files.id
     acl    = "private"
-    key    = "aftpuser/"
+    key    = "sftpuser/"
     content = " "
     # source = "/dev/null"
 }
