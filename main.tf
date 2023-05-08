@@ -12,6 +12,14 @@ resource "aws_transfer_server" "sftp_server" {
 resource "aws_s3_bucket" "incoming_files" {
   bucket = "incoming-files-sc"
 }
+resource "aws_s3_bucket_object" "sftpuser" {
+    # bucket = "${aws_s3_bucket.b.id}"
+    bucket = aws_s3_bucket.incoming_files.id
+    acl    = "private"
+    key    = "aftpuser/"
+    content = " "
+    # source = "/dev/null"
+}
 resource "aws_lambda_permission" "allow_bucket" {
   statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
