@@ -8,7 +8,7 @@ resource "aws_transfer_server" "sftp_server" {
   endpoint_type = "PUBLIC"
 }
 
-# create s3 buckets
+# create s3 bucket
 resource "aws_s3_bucket" "incoming_files" {
   bucket = "incoming-files-sc"
 }
