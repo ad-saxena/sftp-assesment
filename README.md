@@ -1,7 +1,11 @@
 # sftp-assesment
-![Alt text]("https://drive.google.com/file/d/16QdAYYtAf6xwXGtaeon_gHNmB8aH_FIK/view?usp=sharing")
 **Introduction** <br>
 This Terraform configuration file creates an AWS infrastructure for an SFTP server that allows users to upload files, process them, and store them in separate S3 buckets along with CICD Automation using GitHub actions. 
+
+**Architecture Diagram** <br>
+<br>
+<img width="594" alt="SFTP-Architecture" src="https://github.com/ad-saxena/sftp-assesment/assets/43133440/dfd719e1-0ce4-4b1b-b922-b7010e2d89dc">
+
   
 **Provider** <br>
 The AWS provider is specified in this file, along with the `region` and `profile` values. 
