@@ -1,29 +1,29 @@
 # sftp-assesment
-Introduction 
+**Introduction** <br>
 This Terraform configuration file creates an AWS infrastructure for an SFTP server that allows users to upload files, process them, and store them in separate S3 buckets along with CICD Automation using GitHub actions. 
   
-Provider 
+**Provider** <br>
 The AWS provider is specified in this file, along with the `region` and `profile` values. 
   
-SFTP Server 
+**SFTP Server** <br>
 This file creates an SFTP server using the `aws_transfer_server` resource. The `identity_provider_type` is set to `SERVICE_MANAGED`, which means that AWS manages the identities and credentials of the users. The `endpoint_type` is set to `PUBLIC` (initial for test later in production will configure with Security groups), which makes the SFTP server accessible over the internet. 
   
-S3 Buckets 
+**S3 Buckets** <br> 
 The file creates three S3 buckets: `incoming_files`, `processed_data`, and `error_logs`. These buckets are used to store the incoming files, processed data, and error logs, respectively. 
   
-Lambda Permission and S3 Bucket Notification 
+**Lambda Permission and S3 Bucket Notification** <br>
 The file creates an `aws_lambda_permission` resource that allows the `aws_s3_bucket_notification` resource to invoke a Lambda function when a new object is created in the `incoming_files` bucket. The `aws_s3_bucket_notification` resource is used to create an S3 bucket notification that invokes a Lambda function when a new object is created in the `incoming_files` bucket. 
   
-IAM Role and Policy Attachment 
+**IAM Role and Policy Attachment** <br>
 An `aws_iam_role` resource is created in this file to define a role for the SFTP user to access S3 buckets. This role is assigned to the SFTP user and allows them to read and write to the `incoming_files` bucket. An `aws_iam_policy_attachment` resource is created to attach the policy to the role. 
   
-IAM Policy 
+**IAM Policy** <br>
 An `aws_iam_policy` resource is created to define a policy for the SFTP user. This policy allows the user to list, put, get, and delete objects in their home directory. 
   
-SFTP User and SSH Key 
+**SFTP User and SSH Key** <br> 
 The file creates an `aws_transfer_user` resource to define an SFTP user and assigns the IAM role and policy created earlier to this user. An `aws_transfer_ssh_key` resource is created to define an SSH key for the SFTP user to access the SFTP server. 
  
-Continuous Deployment  
+**Continuous Deployment** <br>  
 The workflow consists of a single job called `terraform_apply`, which is run on the latest version of Ubuntu. The job has the following steps: 
   
 1. `checkout` - This step checks out the code from the repository to the runner's file system. 
